@@ -1,19 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>home-conductor</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">home-conductor</ion-title>
     </ion-toolbar>
   </ion-header>
-
- <ion-list *ngFor="let datos of data"> 
-  <ion-item> {{datos.nombre}} </ion-item>
- </ion-list>
+  <div id="mapId" style="height: 400px; width: 100%;"></div>
 </ion-content>
