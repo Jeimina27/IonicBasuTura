@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, 
-         IonItem, IonButton, IonIcon, IonLabel } from '@ionic/angular/standalone';
-import { Auth } from 'src/services/auth';
+         IonItem, IonButton, IonIcon, IonLabel, LoadingController, NavController} from '@ionic/angular/standalone';
+import { AuthService } from 'src/services/auth';
 import { addIcons } from 'ionicons';
 import { mailOutline, lockClosedOutline, logInOutline } from 'ionicons/icons';
+import { Alerts } from 'src/services/alerts/alerts';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +17,14 @@ import { mailOutline, lockClosedOutline, logInOutline } from 'ionicons/icons';
 })
 export class LoginPage implements OnInit {
   loginForm!: FormGroup;
-  private auth = inject(Auth) ;
+  private loadingController = inject(LoadingController);
+    private Alerts = inject(Alerts)
+    private authService = inject(AuthService)
+    private Nav = inject(NavController)
   constructor() {
     addIcons({ mailOutline, lockClosedOutline, logInOutline });
   }
+  
 
   ngOnInit() {
     this.loginForm = new FormGroup({ 
@@ -28,23 +33,44 @@ export class LoginPage implements OnInit {
     }); 
   
   }
-  async login() {
-    try {
-      if (this.loginForm.valid) {
-        const formValue = this.loginForm.value;
-        console.log('Form Value:', formValue);
-        const isAuthenticated = await this.auth.login(formValue);
-        
-        if (isAuthenticated) {
-          console.log('Login exitoso');
-          // Add navigation logic here
-        } else {
-          console.log('Error de autenticación');
-        }
+
+  async login(){
+    if (this.loginForm.invalid) return this.Alerts.DataVacia();
+
+  const loading = await this.loadingController.create({
+    message: 'Iniciando sesión...',
+  });
+  await loading.present();
+
+  try {
+    const formValue = this.loginForm.value;
+    const result = await this.authService.login({
+      email: formValue.email,
+      password: formValue.password
+    });
+    
+    if (result.success && result.user) {
+      console.log('🎉 Login exitoso, rol:', result.user.role);
+      
+      // 🔥 NAVEGAR SEGÚN EL ROL DEL USER
+      if (result.user.role === 'admin') {
+        this.Nav.navigateRoot('/home-admin');
+      } else if (result.user.role === 'conductor') {
+        this.Nav.navigateRoot('/home-conductor');
+      } else {
+        this.Nav.navigateRoot('/login');
       }
-    } catch (error) {
-      console.error('Error en login:', error);
+      
+      await loading.dismiss();
+    } else {
+      await loading.dismiss();
     }
+  } catch (error) {
+    console.error('Error during login:', error);
+    await loading.dismiss();
+    this.Alerts.DataIncorreta();
   }
+ }
+  
 }
 

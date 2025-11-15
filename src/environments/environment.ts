@@ -3,9 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  url : 'http://apirecoleccion.gonzaloandreslucio.com/api', 
+  url : 'http://apirecoleccion.gonzaloandreslucio.com/api/', 
   url2 :'http://127.0.0.1:8000/api',
+  perfil_id: '',
   production: false,
+  supabaseUrl: 'https://qrrlehcmqgiuohhymdtx.supabase.co',
+  supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFycmxlaGNtcWdpdW9oaHltZHR4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMxNjU3OTMsImV4cCI6MjA3ODc0MTc5M30.Idv2_-CRrlJi7k1X3nf-NT7bpiVi6jv9cBG5FjzbCOk',
 };
 
 
