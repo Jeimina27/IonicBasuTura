@@ -1,105 +1,102 @@
+/* Fondo general: blanco suave */
 .login-container {
   height: 100%;
+  padding: 25px;
+  background: #f7faf7; /* Verde MUY claro */
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
+/* Logo y título */
 .logo-container {
   text-align: center;
-  margin-bottom: 40px;
-  margin-top: 60px;
+  margin-top: 40px;
+  margin-bottom: 25px;
 
   .logo {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 20px;
+    width: 110px;
+    height: 110px;
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
-    color: #2c3e50;
-    margin: 0;
+    color: #1d5c33; /* Verde profundo */
+    margin: 8px 0 0 0;
   }
 
   .subtitle {
-    color: #7f8c8d;
+    color: #4c8f62; /* Verde suave */
     font-size: 16px;
-    margin-top: 10px;
+    margin-top: 6px;
   }
 }
 
+/* Formulario centrado */
 .login-form {
   width: 100%;
   max-width: 400px;
-
-  .form-group {
-    margin-bottom: 25px;
-  }
 }
 
+/* Inputs minimalistas */
 .custom-input {
-  --background: rgba(255, 255, 255, 0.8);
-  --border-radius: 10px;
-  --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 16px;
-  
-  ion-label {
-    font-size: 14px;
-    color: #34495e;
-    
-    ion-icon {
-      margin-right: 8px;
-      vertical-align: middle;
-    }
+  --background: white;
+  --border-radius: 14px;
+  --border-color: #cde8d4; /* Borde verde claro */
+  --border-width: 1px;
+  margin-bottom: 18px;
+
+  ion-icon {
+    color: #1d8a47; /* Verde amigable */
+    font-size: 20px;
   }
 
   ion-input {
-    --padding-start: 16px;
-    --padding-end: 16px;
     font-size: 16px;
+    color: #1a1a1a;
+    --padding-start: 12px;
   }
 }
 
+/* Botón principal verde moderno */
 .login-button {
-  --background: #3498db;
-  --border-radius: 25px;
-  --box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
-  margin-top: 20px;
-  margin-bottom: 20px;
-  height: 48px;
-  font-size: 16px;
-  font-weight: 500;
+  --background: #2fb463;   /* Verde vibrante pero no agresivo */
+  --background-hover: #279b55;
+  --border-radius: 20px;
+  height: 50px;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 15px;
   text-transform: none;
 
   &:hover {
-    --background: #2980b9;
+    filter: brightness(0.95);
   }
 }
 
+/* Olvidaste tu contraseña */
 .forgot-password {
   text-align: center;
-  margin-top: 20px;
 
   a {
-    color: #7f8c8d;
+    color: #1d8a47;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 500;
 
     &:hover {
-      color: #34495e;
+      color: #146936;
     }
   }
 }
 
-// Animaciones
+/* Animación suave en focus */
 ion-item {
-  transition: transform 0.3s ease;
+  transition: box-shadow 0.2s ease;
 
   &:focus-within {
-    transform: scale(1.02);
+    box-shadow: 0 0 8px rgba(47, 180, 99, 0.25); /* verde suave */
   }
 }
